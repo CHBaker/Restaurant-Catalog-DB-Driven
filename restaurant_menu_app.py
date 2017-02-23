@@ -19,45 +19,44 @@ DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
 
-@app.route('/', '/restaurants')
+@app.route('/')
+@app.route('/restaurants')
 def showRestaurants():
-	return "this page will show my restaurants"
+    return "this page will show my restaurants"
 
 
 @app.route('/restaurant/new')
 def newRestaurant():
-	return "this page will be for making a new restaurant"
+    return "this page will be for making a new restaurant"
 
 @app.route('/restaurant/<int:restaurant_id>/edit')
 def editRestaurant():
-	return "this page will be for editing restaurant '%s'" % restaurant_id
+    return "this page will be for editing restaurant '%s'" % restaurant_id
 
 
 @app.route('/restaurant/<int:restaurant_id>/delete')
 def deleteRestaurant():
-	return "this page will be for deleting restaurant '%s'" % restaurant_id
+    return "this page will be for deleting restaurant '%s'" % restaurant_id
 
 
-@app.route('/restaurant/<int:restaurant_id>/menu',
-		  '/restaurant/<int:restaurant_id>')
+@app.route('/restaurant/<int:restaurant_id>/menu')
+@app.route('/restaurant/<int:restaurant_id>')
 def showMenu():
-	return "this page will show the menu for the restaurant '%s'" % restaurant_id
+    return "this page will show the menu for the restaurant '%s'" % restaurant_id
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/new')
 def newMenu():
-	return "this page will be for adding a new menu item for the restaurant '%s'" % restaurant_id
+    return "this page will be for adding a new menu item for the restaurant '%s'" % restaurant_id
 
-@app.route('''/restaurant/<int:restaurant_id>/menu 
-			  /<int:menu_id>/edit''')
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit')
 def editMenu():
-	return "this page will be for editing menu item '%s'" % menu_id
+    return "this page will be for editing menu item '%s'" % menu_id
 
 
-@app.route('''/restaurant/<int:restaurant_id>/menu
-			  /<int:menu_id/delete''')
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id/delete')
 def deleteMenu():
-	return "this page will be for deleting menu item  '%s'" % menu_id
+    return "this page will be for deleting menu item  '%s'" % menu_id
 
 
 # main app running is named __main__ all others named __name__

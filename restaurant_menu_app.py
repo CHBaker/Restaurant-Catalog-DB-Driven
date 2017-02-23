@@ -30,32 +30,35 @@ def newRestaurant():
     return "this page will be for making a new restaurant"
 
 @app.route('/restaurant/<int:restaurant_id>/edit')
-def editRestaurant():
+def editRestaurant(restaurant_id):
     return "this page will be for editing restaurant '%s'" % restaurant_id
 
 
 @app.route('/restaurant/<int:restaurant_id>/delete')
-def deleteRestaurant():
+def deleteRestaurant(restaurant_id):
     return "this page will be for deleting restaurant '%s'" % restaurant_id
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu')
 @app.route('/restaurant/<int:restaurant_id>')
-def showMenu():
+def showMenu(restaurant_id):
     return "this page will show the menu for the restaurant '%s'" % restaurant_id
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/new')
-def newMenu():
+def newMenu(restaurant_id):
     return "this page will be for adding a new menu item for the restaurant '%s'" % restaurant_id
 
-@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit')
-def editMenu():
+
+@app.route(
+    '/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit')
+def editMenu(restaurant_id, menu_id):
     return "this page will be for editing menu item '%s'" % menu_id
 
 
-@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id/delete')
-def deleteMenu():
+@app.route(
+    '/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete')
+def deleteMenu(restaurant_id, menu_id):
     return "this page will be for deleting menu item  '%s'" % menu_id
 
 

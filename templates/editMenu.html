@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta content="text/html; charset=UTF-8">
+	<title>Edit Menu</title>
+</head>
+
+	<body>
+
+		<h1>
+
+			Restaurant {{ restaurant.name }}<br>
+			Edit menu item {{ menu.name }}
+
+		</h1>
+
+		<form action="#" method="post">
+
+			<p>
+				New Name:
+			</p>
+
+			<input type="text" size="30" name="name" placeholder="{{ menu.name }}">
+
+			<input type="submit" value="Update">
+
+		</form>
+
+		<br>
+		<a href="#">
+		Cancel
+		</a>
+
+	</body>
+
+</html>

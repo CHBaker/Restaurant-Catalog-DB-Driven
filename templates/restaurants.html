@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=UTF-8">
+    <title>Home Restaurants</title>
+</head>
+
+    <body>
+
+        <h1 class = "title">
+
+            this page will show my restaurants
+
+        </h1>
+
+        <a href="#">Create new restaurant</a>
+
+        <br>
+        <br>
+
+        {% for restaurant in restaurants%}
+
+            <div class="name">
+
+                {{ restaurant.name }}
+
+                <br>
+                <a href="#">edit</a><br>
+                <a href="#">delete</a>
+
+            </div>
+
+            <br>
+
+        {% endfor %}
+
+    </body>
+
+</html>

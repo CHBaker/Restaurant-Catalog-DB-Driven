@@ -19,47 +19,60 @@ DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
 
+
+# landing page shows all restaurants
 @app.route('/')
 @app.route('/restaurants')
 def showRestaurants():
-    return "this page will show my restaurants"
+    restaurants = session.query(Restaurant).all()
+    return render_template('restaurants.html', restaurants = restaurants)
 
 
 @app.route('/restaurant/new')
 def newRestaurant():
-    return "this page will be for making a new restaurant"
+    return render_template('newRestaurant.html')
+
 
 @app.route('/restaurant/<int:restaurant_id>/edit')
 def editRestaurant(restaurant_id):
-    return "this page will be for editing restaurant '%s'" % restaurant_id
+    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    return render_template('editRestaurant.html', restaurant = restaurant)
 
 
 @app.route('/restaurant/<int:restaurant_id>/delete')
 def deleteRestaurant(restaurant_id):
-    return "this page will be for deleting restaurant '%s'" % restaurant_id
+    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    return render_template('deleteRestaurant.html', restaurant = restaurant)
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu')
 @app.route('/restaurant/<int:restaurant_id>')
 def showMenu(restaurant_id):
-    return "this page will show the menu for the restaurant '%s'" % restaurant_id
+    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    menu = session.query(MenuItem).filter_by(restaurant_id = restaurant.id).all()
+    return render_template('menu.html', restaurant = restaurant, menu = menu)
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/new')
 def newMenu(restaurant_id):
-    return "this page will be for adding a new menu item for the restaurant '%s'" % restaurant_id
+    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    return render_template('newMenu.html', restaurant = restaurant)
 
 
 @app.route(
     '/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit')
 def editMenu(restaurant_id, menu_id):
-    return "this page will be for editing menu item '%s'" % menu_id
+    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    menuItem = session.query(MenuItem).filter_by(id = menu_id).one()
+    return render_template('editMenu.html', restaurant = restaurant, menu = menuItem)
 
 
 @app.route(
     '/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete')
 def deleteMenu(restaurant_id, menu_id):
-    return "this page will be for deleting menu item  '%s'" % menu_id
+    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    menuItem = session.query(MenuItem).filter_by(id = menu_id).one()
+    return render_template('deleteMenu.html', restaurant = restaurant, menu = menuItem)
 
 
 # main app running is named __main__ all others named __name__

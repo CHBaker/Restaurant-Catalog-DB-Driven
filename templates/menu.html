@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta content="text/html; charset=UTF-8">
+	<title>Home Menu</title>
+</head>
+
+	<body>
+
+		<h1>
+
+			{{ restaurant.name }} Menu
+
+		</h1>
+
+		<br>
+
+		<ol>
+
+			{% for item in menu %}
+
+				<li> {{ item.name }}
+				<br>
+				<a href="#">edit</a><br>
+				<a href="#">delete</a>
+				</li>
+				<br>
+				<br>
+
+			{% endfor %}
+
+		</ol>
+
+	</body>
+
+</html>

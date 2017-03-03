@@ -10,11 +10,11 @@
 
         <h1 class = "title">
 
-            this page will show my restaurants
+            Restaurants
 
         </h1>
 
-        <a href="#">Create new restaurant</a>
+        <a href="{{ url_for('newRestaurant') }}">Create new restaurant</a>
 
         <br>
         <br>
@@ -26,8 +26,8 @@
                 {{ restaurant.name }}
 
                 <br>
-                <a href="#">edit</a><br>
-                <a href="#">delete</a>
+                <a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}">edit</a><br>
+                <a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}">delete</a>
 
             </div>
 

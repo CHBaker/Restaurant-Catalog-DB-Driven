@@ -16,14 +16,21 @@
 
 		<br>
 
+		<h3>
+
+			<a href="{{ url_for('newMenu', restaurant_id = restaurant.id) }}">
+			Create</a>
+
+		</h3>
+
 		<ol>
 
 			{% for item in menu %}
 
 				<li> {{ item.name }}
 				<br>
-				<a href="#">edit</a><br>
-				<a href="#">delete</a>
+				<a href="{{ url_for('editMenu', restaurant_id = restaurant.id, menu_id = item.id) }}">edit</a><br>
+				<a href="{{ url_for('deleteMenu', restaurant_id = restaurant.id, menu_id = item.id) }}">delete</a>
 				</li>
 				<br>
 				<br>

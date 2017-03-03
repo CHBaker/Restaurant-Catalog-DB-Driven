@@ -14,14 +14,14 @@
 
 		</h1>
 
-		<form action="#" method = 'post'>
+		<form action="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}" method = 'post'>
 
 			<input type='submit', value = 'Delete'>
 
 		</form>
 
 		<br>
-		<a href="#"> 
+		<a href="{{ url_for('showRestaurants') }}"> 
 		Cancel 
 		</a>
 

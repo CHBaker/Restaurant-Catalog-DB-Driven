@@ -89,15 +89,35 @@ def showMenu(restaurant_id):
 def newMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
 
+
+    # place holder for regex to define form input
+    def validForm(name, description, price, course):
+        if name != '' and description != '' \
+           and price != '' and course != '':
+            return True
+        return False
+
+
     if request.method == 'POST':
-        # place holder for regex to define form input
-        if request.form['name'] != '':
+        if validForm(request.form['name'], request.form['description'],
+                     request.form['price'], request.form['course']):
             name = request.form['name']
-            menu = MenuItem(name=name, restaurant_id=restaurant_id)
+            description = request.form['description']
+            price = request.form['price']
+            course = request.form['course']
+            menu = MenuItem(name=name, restaurant_id=restaurant_id,
+                            description=description, price=price,
+                            course=course)
             session.add(menu)
             session.commit()
             flash("%s has been created as a new menu item!" % name)
             return redirect(url_for('showMenu', restaurant_id=restaurant_id))
+        else:
+            error = "Oops! you are missing some information"
+            return render_template('NewMenu.html', restaurant_id=restaurant_id,
+                                   restaurant=restaurant, name=name,
+                                   description=description, price=price,
+                                   course=course, error=error)
 
     return render_template('newMenu.html', restaurant_id=restaurant_id,
                            restaurant=restaurant)
@@ -111,13 +131,24 @@ def editMenu(restaurant_id, menu_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     menuItem = session.query(MenuItem).filter_by(id=menu_id).one()
 
+
+    def validForm(name, description, price, course):
+        if name != '' and description != '' \
+           and price != '' and course != '':
+            return True
+        return False
+
+
     if request.method == 'POST':
-        if request.form['name'] != '':
-            name = request.form['name']
-            menuItem.name = name
+        if validForm(request.form['name'], request.form['description'],
+                     request.form['price'], request.form['course']):
+            menuItem.name = request.form['name']
+            menuItem.description = request.form['description']
+            menuItem.price = request.form['price']
+            menuItem.course = request.form['course']
             session.add(menuItem)
             session.commit()
-            flash("%s has been added to the menu!" % name)
+            flash("%s has been added to the menu!" % menuItem.name)
             return redirect(url_for('showMenu', restaurant_id=restaurant_id))
 
     return render_template('editMenu.html', restaurant=restaurant,

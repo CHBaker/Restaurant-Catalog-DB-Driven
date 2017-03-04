@@ -17,11 +17,33 @@
 
 		<form action="{{ url_for('editMenu', restaurant_id = restaurant.id, menu_id = menu.id) }}" method="post">
 
-			<p>
-				New Name:
-			</p>
+			<div class="form" id="name">
+				Name:<br>
+				<input type="text" name="name" value="{{ menu.name }}">
+			</div>
 
-			<input type="text" size="30" name="name" placeholder="{{ menu.name }}">
+			<div class="form" id="description">
+				Description:<br>
+				<textarea class="text-area" name="description">{{ menu.description }}</textarea>
+			</div>
+
+			<div class="form" id="price">
+				Price:<br>
+				<input type="text" name="price" value="{{ menu.price }}">
+			</div>
+
+			<!-- add rember check in form -->
+			<div class="form" id="course">
+				Course:<br>
+				<input type="radio" name="course" value="Appetizer">
+				Appetizer<br>
+				<input type="radio" name="course" value="Entree">
+				Entree<br>
+				<input type="radio" name="course" value="Dessert">
+				Dessert<br>
+				<input type="radio" name="course" value="Beverage">
+				Beverage<br>
+			</div>
 
 			<input type="submit" value="Update">
 

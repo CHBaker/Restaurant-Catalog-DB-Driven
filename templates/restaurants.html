@@ -24,7 +24,9 @@
             <div class="name">
 
                 {{ restaurant.name }}
-
+                 <a href="{{ url_for('showMenu', restaurant_id=restaurant.id) }}">
+                 Menu</a>
+                 
                 <br>
                 <a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}">edit</a><br>
                 <a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}">delete</a>

@@ -1,42 +1,34 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <meta content="text/html; charset=UTF-8">
-    <title>Home Restaurants</title>
-</head>
+{% block content %}
 
-    <body>
+    <h1 class = "title">
 
-        <h1 class = "title">
+        Restaurants
 
-            Restaurants
+    </h1>
 
-        </h1>
+    <a href="{{ url_for('newRestaurant') }}">Create new restaurant</a>
 
-        <a href="{{ url_for('newRestaurant') }}">Create new restaurant</a>
+    <br>
+    <br>
 
-        <br>
-        <br>
+    {% for restaurant in restaurants%}
 
-        {% for restaurant in restaurants%}
+        <div class="name">
 
-            <div class="name">
-
-                {{ restaurant.name }}
-                 <a href="{{ url_for('showMenu', restaurant_id=restaurant.id) }}">
-                 Menu</a>
-                 
-                <br>
-                <a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}">edit</a><br>
-                <a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}">delete</a>
-
-            </div>
-
+            {{ restaurant.name }}
+             <a href="{{ url_for('showMenu', restaurant_id=restaurant.id) }}">
+             Menu</a>
+             
             <br>
+            <a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}">edit</a><br>
+            <a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}">delete</a>
 
-        {% endfor %}
+        </div>
 
-    </body>
+        <br>
 
-</html>
+    {% endfor %}
+
+{% endblock %}

@@ -31,6 +31,16 @@ class Restaurant(Base):
         String(180), nullable = False
         )
 
+# serialized function to be able to send JSON objects in a
+# serializable format
+    @property
+    def serialize(self):
+
+        return {
+                'name': self.name,
+                'id': self.id
+            }
+
 
 class MenuItem(Base):
     __tablename__ = 'menu_item'

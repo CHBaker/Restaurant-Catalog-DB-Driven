@@ -2,7 +2,7 @@
 from flask import(Flask,
                   render_template,
                   url_for, request,
-                  redirect, flash, jsonify,)
+                  redirect, flash, jsonify)
 
 # import restuarant db
 from database_setup import Base, Restaurant, MenuItem
@@ -17,6 +17,29 @@ engine = create_engine('sqlite:///restaurantmenu.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+
+# API endpoint (GET request) for all restaurant's
+@app.route('/restaurants/JSON')
+def restaurantsJSON():
+    restaurants = session.query(Restaurant).all()
+    return jsonify(Restaurants=[i.serialize for i in restaurants])
+
+
+# API endpoint (GET request) for restaurant's full menu
+@app.route('/restaurant/<int:restaurant_id>/menu/JSON')
+def restaurantMenuJSON(restaurant_id):
+    restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    items = session.query(MenuItem).filter_by(
+        restaurant_id=restaurant_id).all()
+    return jsonify(MenuItems=[i.serialize for i in items])
+
+
+# API endpoint (GET request) for restaurant's single menu item
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/JSON')
+def restaurantMenuItemJSON(restaurant_id, menu_id):
+    menuItem = session.query(MenuItem).filter_by(id=menu_id).one()
+    return jsonify(MenuItem=[menuItem.serialize])
 
 
 # landing page shows all restaurants

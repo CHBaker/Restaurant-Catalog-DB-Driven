@@ -1,49 +1,40 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% block content %}
 
-<head>
-	<meta content="text/html; charset=UTF-8">
-	<title>Home Menu</title>
-</head>
+	<h1>
 
-	<body>
+		{{ restaurant.name }} Menu
 
-		<h1>
+	</h1>
 
-			{{ restaurant.name }} Menu
+	<br>
 
-		</h1>
+	<h3>
 
-		<br>
+		<a href="{{ url_for('newMenu', restaurant_id = restaurant.id) }}">
+		Create</a>
 
-		<h3>
+	</h3>
 
-			<a href="{{ url_for('newMenu', restaurant_id = restaurant.id) }}">
-			Create</a>
+	<ol>
 
-		</h3>
+		{% for item in menu %}
 
-		<ol>
+			<li> {{ item.name }} <br>
+			
+			<ul>
+				<li> {{ item.description }} </li>
+				<li> {{ item.price }} </li>
+				<li> {{ item.course }} </li>
+			</ul>
+			<a href="{{ url_for('editMenu', restaurant_id = restaurant.id, menu_id = item.id) }}">edit</a><br>
+			<a href="{{ url_for('deleteMenu', restaurant_id = restaurant.id, menu_id = item.id) }}">delete</a>
+			</li>
+			<br>
+			<br>
 
-			{% for item in menu %}
+		{% endfor %}
 
-				<li> {{ item.name }} <br>
-				
-				<ul>
-					<li> {{ item.description }} </li>
-					<li> {{ item.price }} </li>
-					<li> {{ item.course }} </li>
-				</ul>
-				<a href="{{ url_for('editMenu', restaurant_id = restaurant.id, menu_id = item.id) }}">edit</a><br>
-				<a href="{{ url_for('deleteMenu', restaurant_id = restaurant.id, menu_id = item.id) }}">delete</a>
-				</li>
-				<br>
-				<br>
+	</ol>
 
-			{% endfor %}
-
-		</ol>
-
-	</body>
-
-</html>
+{% endblock %}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap Header Footer Template</title>
+
+    <!-- Bootstrap -->
+    <link href="static/bootstrap.min.css" rel="stylesheet">
+    <link href="static/side.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    {% if "msie" in request.headers.get('User-Agent') %}
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    {% endif %}
+   </head>
+
+	<body>
+		<div>
+
+				<img src="static/images/floral2.jpg" alt="floral background image" class="img-responsive">
+
+			<div class="header">
+
+				<div class="center-block text-center">
+					<img src="static/images/profile.jpg" class="profile-pic img-responsive center-block">
+					<br><br>
+					{ User }
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="spacer-box">
+		</div>
+
+		<div class="container-fluid row">
+
+				<div class="item col-md-4 text-center"><a class="m-link" href="{{ url_for('showRestaurants') }}">
+				All Restaurants</a></div>
+
+				<div class="item col-md-4 text-center"><a class="m-link" href="#">
+				My Restaurant</a></div>
+
+				<div class="item col-md-4 text-center"><a class="m-link" href="#">
+				About</a></div>
+
+		</div>
+
+		<br>
+		<br>
+
+		{% block content %}
+		{% endblock %}
+
+		<br>
+		<br>
+
+		<div class="footer">
+
+			<span><a href="#">
+			Facebook</a></span>
+			<span><a href="#">
+			Twitter</a></span>
+
+		</div>
+
+		 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="static/js/bootstrap.min.js"></script>
+
+	</body>
+
+</html>

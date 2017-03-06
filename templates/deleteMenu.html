@@ -1,32 +1,23 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-	<meta content="text/html; charset=UTF-8">
-	<title>Delete Menu Item</title>
-</head>
+{% block content %}
 
-	<body>
+	<h1>
 
-		<h1>
+		Restaurant {{ restaurant.name }}<br>
+		Are you sure you want to delete {{ menu.name }}?
 
-			Restaurant {{ restaurant.name }}<br>
-			Are you sure you want to delete {{ menu.name }}?
+	</h1>
 
-		</h1>
+	<form action="#" method = 'post'>
 
-		<form action="#" method = 'post'>
+		<input type='submit' value = 'Delete'>
 
-			<input type='submit' value = 'Delete'>
+	</form>
 
-		</form>
+	<br>
+	<a href="{{ url_for('showMenu', restaurant_id = restaurant.id)}}"> 
+	Cancel 
+	</a>
 
-		<br>
-		<a href="{{ url_for('showMenu', restaurant_id = restaurant.id)}}"> 
-		Cancel 
-		</a>
-
-
-	</body>
-
-</html>
+{% endblock %}

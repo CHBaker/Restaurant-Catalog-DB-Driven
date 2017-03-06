@@ -1,54 +1,46 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-	<meta content="text/html; charset=UTF-8">
-	<title>New Menu Item</title>
-</head>
+{% block content %}
 
-	<body>
+	<h1>
 
-		<h1>
+		New menu item for {{ restaurant.name }}
 
-			New menu item for {{ restaurant.name }}
+	</h1>
 
-		</h1>
+	{{ error }}
 
-		{{ error }}
+	<form action="{{ url_for('newMenu', restaurant_id = restaurant.id) }}" method="post">
 
-		<form action="{{ url_for('newMenu', restaurant_id = restaurant.id) }}" method="post">
+		<div class="form" id="name">
+			Name:<br>
+			<input type="text" name="name">
+		</div>
 
-			<div class="form" id="name">
-				Name:<br>
-				<input type="text" name="name">
-			</div>
+		<div class="form" id="description">
+			Description:<br>
+			<textarea class="text-area" name="description"></textarea>
+		</div>
 
-			<div class="form" id="description">
-				Description:<br>
-				<textarea class="text-area" name="description"></textarea>
-			</div>
+		<div class="form" id="price">
+			Price:<br>
+			<input type="text" name="price">
+		</div>
 
-			<div class="form" id="price">
-				Price:<br>
-				<input type="text" name="price">
-			</div>
+		<div class="form" id="course">
+			Course:<br>
+			<input type="radio" name="course" value="Appetizer">
+			Appetizer<br>
+			<input type="radio" name="course" value="Entree">
+			Entree<br>
+			<input type="radio" name="course" value="Dessert">
+			Dessert<br>
+			<input type="radio" name="course" value="Beverage">
+			Beverage<br>
+		</div>
 
-			<div class="form" id="course">
-				Course:<br>
-				<input type="radio" name="course" value="Appetizer">
-				Appetizer<br>
-				<input type="radio" name="course" value="Entree">
-				Entree<br>
-				<input type="radio" name="course" value="Dessert">
-				Dessert<br>
-				<input type="radio" name="course" value="Beverage">
-				Beverage<br>
-			</div>
+		<input type="submit" value="Create">
 
-			<input type="submit" value="Create">
+	</form>
 
-		</form>
-
-	</body>
-
-</html>
+{% endblock %}

@@ -1,59 +1,56 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-	<meta content="text/html; charset=UTF-8">
-	<title>Edit Menu</title>
-</head>
+{% block content %}
 
-	<body>
+	<h1>
 
-		<h1>
+		Restaurant {{ restaurant.name }}<br>
+		Edit menu item {{ menu.name }}
 
-			Restaurant {{ restaurant.name }}<br>
-			Edit menu item {{ menu.name }}
+	</h1>
 
-		</h1>
+	<form action="{{ url_for('editMenu', restaurant_id = restaurant.id, menu_id = menu.id) }}" method="post">
 
-		<form action="{{ url_for('editMenu', restaurant_id = restaurant.id, menu_id = menu.id) }}" method="post">
+		<div class="form" id="name">
+			Name:<br>
+			<input type="text" name="name" value="{{ menu.name }}">
+		</div>
 
-			<div class="form" id="name">
-				Name:<br>
-				<input type="text" name="name" value="{{ menu.name }}">
-			</div>
+		<div class="form" id="description">
+			Description:<br>
+			<textarea class="text-area" name="description">{{ menu.description }}</textarea>
+		</div>
 
-			<div class="form" id="description">
-				Description:<br>
-				<textarea class="text-area" name="description">{{ menu.description }}</textarea>
-			</div>
+		<div class="form" id="price">
+			Price:<br>
+			<input type="text" name="price" value="{{ menu.price }}">
+		</div>
 
-			<div class="form" id="price">
-				Price:<br>
-				<input type="text" name="price" value="{{ menu.price }}">
-			</div>
+		<!-- add rember check in form -->
+		<div class="form" id="course">
+		
+			Course:<br>
+			<input type="radio" name="course" value="Appetizer" {% if menu.course == 'Appetizer' %}checked{% endif %}>
+			Appetizer<br>
 
-			<!-- add rember check in form -->
-			<div class="form" id="course">
-				Course:<br>
-				<input type="radio" name="course" value="Appetizer">
-				Appetizer<br>
-				<input type="radio" name="course" value="Entree">
-				Entree<br>
-				<input type="radio" name="course" value="Dessert">
-				Dessert<br>
-				<input type="radio" name="course" value="Beverage">
-				Beverage<br>
-			</div>
+			<input type="radio" name="course" value="Entree" {% if menu.course == 'Entree' %}checked{% endif %}>
+			Entree<br>
 
-			<input type="submit" value="Update">
+			<input type="radio" name="course" value="Dessert" {% if menu.course == 'Dessert' %}checked{% endif %}>
+			Dessert<br>
 
-		</form>
+			<input type="radio" name="course" value="Beverage" {% if menu.course == 'Beverage' %}checked{% endif %}>
+			Beverage<br>
 
-		<br>
-		<a href="{{ url_for('showMenu', restaurant_id = restaurant.id) }}">
-		Cancel
-		</a>
+		</div>
 
-	</body>
+		<input type="submit" value="Update">
 
-</html>
+	</form>
+
+	<br>
+	<a href="{{ url_for('showMenu', restaurant_id = restaurant.id) }}">
+	Cancel
+	</a>
+
+{% endblock %}

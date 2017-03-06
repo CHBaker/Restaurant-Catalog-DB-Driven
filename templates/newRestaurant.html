@@ -1,31 +1,23 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-	<meta content="text/html; charset=UTF-8">
-	<title>New Restaurant</title>
-</head>
+{% block content %}
 
-	<body>
+	<h1>
 
-		<h1>
+		Create a new restaurant
 
-			Create a new restaurant
+	</h1>
 
-		</h1>
+	<form action="{{ url_for('newRestaurant') }}" method="post">
 
-		<form action="{{ url_for('newRestaurant') }}" method="post">
+		<p>
+			Name:
+		</p>
 
-			<p>
-				Name:
-			</p>
+		<input type="text" size="30" name="name">
 
-			<input type="text" size="30" name="name">
+		<input type="submit" value="Create">
 
-			<input type="submit" value="Create">
+	</form>
 
-		</form>
-
-	</body>
-
-</html>
+{% endblock %}

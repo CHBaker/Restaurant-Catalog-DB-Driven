@@ -1,0 +1,40 @@
+/*other css attributes outside bootstrap*/
+
+.profile-pic {
+	width: 175px;
+	height:175px;
+	border: 2px solid white;
+	border-radius: 100%
+}
+
+.header {
+	position: absolute;
+	margin-top: 2%;
+ 	margin-left: 50%;
+ 	transform: translate(-50%,-50%);
+ }
+
+.container {
+	position: relative;
+}
+
+.spacer-box {
+	border-top: 1px solid white;
+	background-color: black;
+	width: 100%;
+	height: 200px;
+}
+
+.item {
+	height: 36px;
+	padding-top: 6px;
+	border-bottom: 2px solid black;
+}
+
+.m-link {
+	color: black;
+}
+
+.m-link:hover {
+	color: black;
+}

@@ -113,5 +113,30 @@
 
 #create {
 	color: black;
-	text-decoration: none;
+}
+
+.menu-options {
+	font-size: 1.1em;
+}
+
+#menu-edit {
+	padding-right: 28px;
+}
+
+.menu-crea-canc {
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	width: 150px;
+}
+
+.course-op {
+	padding-left: 177px;
+}
+
+#course {
+	margin-left: -88px;
+}
+
+.menu-boxes {
+	padding-left: 62px;
 }

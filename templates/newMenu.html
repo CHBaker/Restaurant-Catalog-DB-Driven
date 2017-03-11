@@ -1,51 +1,105 @@
 {% extends "base.html" %}
 
 {% block content %}
+	
+	<div class="new-form">
 
-	<h1 id="spot">
+		<div class="new-name text-center">
 
-		New menu item for {{ restaurant.name }}
+			<span class="middle-align">
 
-	</h1>
+				<h1>
 
-	{{ error }}
+					New menu item for {{ restaurant.name }}
 
-	<form action="{{ url_for('newMenu', restaurant_id = restaurant.id) }}" method="post">
+				</h1>
 
-		<div class="form" id="name">
-			Name:<br>
-			<input type="text" name="name">
+			</span>
+
 		</div>
 
-		<div class="form" id="description">
-			Description:<br>
-			<textarea class="text-area" name="description"></textarea>
+		<form action="{{ url_for('newMenu', restaurant_id = restaurant.id) }}" method="post">
+
+			<div class="row">
+
+				<div class="col-md-6 text-center menu-boxes">
+
+					<div id="name">
+
+						Name:<br>
+
+						<input type="text" name="name">
+
+					</div>
+
+					<br>
+
+					<div id="price">
+
+						Price:<br>
+
+						<input type="text" name="price">
+
+					</div>
+
+					<br>
+
+					<div id="description">
+
+						Description:<br>
+
+						<textarea class="text-area" name="description"></textarea>
+
+					</div>
+
+				</div>
+
+				<div class="col-md-6">
+
+					<div id="course">
+
+						<div class="course-op">
+
+							Course:<br><br>
+
+							<div id="food-type text-left">
+
+								<input type="radio" name="course" value="Appetizer">
+								Appetizer<br><br>
+
+								<input type="radio" name="course" value="Entree">
+								Entree<br><br>
+
+								<input type="radio" name="course" value="Dessert">
+								Dessert<br><br>
+
+								<input type="radio" name="course" value="Beverage">
+								Beverage<br><br>
+
+							</div>
+
+						</div>
+
+						<br><br><br><br><br>
+
+						<div class="menu-crea-canc text-center">
+
+							<input type="submit" value="Create" id="create">
+
+							<a href="{{ url_for('showMenu', restaurant_id = restaurant.id) }}" id="create">
+							Cancel
+							</a>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</form>
+
 		</div>
 
-		<div class="form" id="price">
-			Price:<br>
-			<input type="text" name="price">
-		</div>
-
-		<div class="form" id="course">
-			Course:<br>
-			<input type="radio" name="course" value="Appetizer">
-			Appetizer<br>
-			<input type="radio" name="course" value="Entree">
-			Entree<br>
-			<input type="radio" name="course" value="Dessert">
-			Dessert<br>
-			<input type="radio" name="course" value="Beverage">
-			Beverage<br>
-		</div>
-
-		<input type="submit" value="Create">
-
-	</form>
-
-	<br>
-	<a href="{{ url_for('showMenu', restaurant_id = restaurant.id) }}#spot"> 
-	Cancel 
-	</a>
+	</div>
 
 {% endblock %}

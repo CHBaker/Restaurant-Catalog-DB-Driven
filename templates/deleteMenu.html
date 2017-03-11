@@ -2,22 +2,42 @@
 
 {% block content %}
 
-	<h1 id="spot">
+	<div class="new-form text-center">
 
-		Restaurant {{ restaurant.name }}<br>
-		Are you sure you want to delete {{ menu.name }}?
+		<div class="new-name text-center">
 
-	</h1>
+			<span class="middle-align">
 
-	<form action="#" method = 'post'>
+				<h1>
 
-		<input type='submit' value = 'Delete'>
+					Restaurant {{ restaurant.name }}<br>
+					Are you sure you want to delete {{ menu.name }}?
 
-	</form>
+				</h1>
 
-	<br>
-	<a href="{{ url_for('showMenu', restaurant_id = restaurant.id)}}#spot"> 
-	Cancel 
-	</a>
+			</span>
+
+		</div>
+
+		<div class="text-center">
+
+			<form action="{{ url_for('deleteMenu', restaurant_id = restaurant.id, menu_id = menu.id) }}" method = 'post'>
+
+				<div class="crea-canc">
+
+					<input type='submit' value = 'Delete'>
+
+					<a href="{{ url_for('showMenu', restaurant_id = restaurant.id)}}" id="create"> 
+					Cancel 
+					</a>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
 
 {% endblock %}

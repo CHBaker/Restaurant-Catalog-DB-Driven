@@ -2,19 +2,27 @@
 
 {% block content %}
 
-    <div class="container-fluid row top" id="spot">
+    <div class="container-fluid row top">
 
         <div class="col-md-4 text-right title">
+
             <span class="align-middle">
+
                 Restaurants
+
             </span>
+
         </div>
 
         <div class="col-md-8 text-center">
+
             <span class="align-middle">
-                <a class="new-res" href="{{ url_for('newRestaurant') }}#spot">
+
+                <a class="new-res" href="{{ url_for('newRestaurant') }}">
                 New Restaurant</a>
+
             </span>
+
         </div>
 
     </div>
@@ -24,30 +32,46 @@
         <div class="container-fluid row restaurant">
 
             <div class="col-md-3 name">
+
                 <span class="align-middle text-left">
+
                     {{ restaurant.name }}
+
                 </span>
+
             </div>
 
             <div class="col-md-3 text-center option">
+
                 <span class="align-middle">
-                    <a href="{{ url_for('showMenu', restaurant_id=restaurant.id) }}#spot">
+
+                    <a href="{{ url_for('showMenu', restaurant_id=restaurant.id) }}">
                     Menu</a>
+
                 </span>
+
             </div>
 
             <div class="col-md-3 text-center option">
+
                 <span class="align-middle">
-                    <a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}#spot">
+
+                    <a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}">
                     Edit</a>
+
                 </span>
+
             </div>
 
             <div class="col-md-3 text-center option">
+
                 <span class="align-middle">
-                    <a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}#spot">
+
+                    <a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}">
                     Delete</a>
+
                 </span>
+
             </div>
 
         </div>

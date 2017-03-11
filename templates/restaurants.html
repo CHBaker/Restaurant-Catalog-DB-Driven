@@ -2,32 +2,55 @@
 
 {% block content %}
 
-    <h1 class = "title">
+    <div class="container-fluid row top" id="spot">
 
-        Restaurants
+        <div class="col-md-4 text-right title">
+            <span class="align-middle">
+                Restaurants
+            </span>
+        </div>
 
-    </h1>
+        <div class="col-md-8 text-center">
+            <span class="align-middle">
+                <a class="new-res" href="{{ url_for('newRestaurant') }}#spot">
+                New Restaurant</a>
+            </span>
+        </div>
 
-    <a href="{{ url_for('newRestaurant') }}">Create new restaurant</a>
-
-    <br>
-    <br>
+    </div>
 
     {% for restaurant in restaurants%}
 
-        <div class="name">
+        <div class="container-fluid row restaurant">
 
-            {{ restaurant.name }}
-             <a href="{{ url_for('showMenu', restaurant_id=restaurant.id) }}">
-             Menu</a>
-             
-            <br>
-            <a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}">edit</a><br>
-            <a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}">delete</a>
+            <div class="col-md-3 name">
+                <span class="align-middle text-left">
+                    {{ restaurant.name }}
+                </span>
+            </div>
+
+            <div class="col-md-3 text-center option">
+                <span class="align-middle">
+                    <a href="{{ url_for('showMenu', restaurant_id=restaurant.id) }}#spot">
+                    Menu</a>
+                </span>
+            </div>
+
+            <div class="col-md-3 text-center option">
+                <span class="align-middle">
+                    <a href="{{ url_for('editRestaurant', restaurant_id = restaurant.id) }}#spot">
+                    Edit</a>
+                </span>
+            </div>
+
+            <div class="col-md-3 text-center option">
+                <span class="align-middle">
+                    <a href="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}#spot">
+                    Delete</a>
+                </span>
+            </div>
 
         </div>
-
-        <br>
 
     {% endfor %}
 

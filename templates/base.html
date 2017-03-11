@@ -8,26 +8,26 @@
     <title>Bootstrap Header Footer Template</title>
 
     <!-- Bootstrap -->
-    <link href="static/bootstrap.min.css" rel="stylesheet">
-    <link href="static/side.css" rel="stylesheet">
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/side.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     {% if "msie" in request.headers.get('User-Agent') %}
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     {% endif %}
    </head>
 
 	<body>
 		<div>
 
-				<img src="static/images/floral2.jpg" alt="floral background image" class="img-responsive">
+				<img src="/static/images/floral.jpg" alt="floral background image" class="img-responsive">
 
 			<div class="header">
 
 				<div class="center-block text-center">
-					<img src="static/images/profile.jpg" class="profile-pic img-responsive center-block">
-					<br><br>
+					<img src="/static/images/profile.jpg" class="profile-pic img-responsive center-block">
+					<br>
 					{ User }
 				</div>
 
@@ -38,7 +38,7 @@
 		<div class="spacer-box">
 		</div>
 
-		<div class="container-fluid row">
+		<div class="container-fluid row menu">
 
 				<div class="item col-md-4 text-center"><a class="m-link" href="{{ url_for('showRestaurants') }}">
 				All Restaurants</a></div>
@@ -51,28 +51,30 @@
 
 		</div>
 
-		<br>
-		<br>
+		<div class="wrapper">
+			{% block content %}
+			{% endblock %}
+			<div class="push">
+			</div>
+		</div>
 
-		{% block content %}
-		{% endblock %}
+		<div class="container-fluid row" id="footer">
 
-		<br>
-		<br>
-
-		<div class="footer">
-
-			<span><a href="#">
-			Facebook</a></span>
-			<span><a href="#">
-			Twitter</a></span>
+			<div class="col-md-3 text-center"><a class="zocial-facebook icon" href="#">
+			</a></div>
+			<div class="col-md-3 text-center"><a class="zocial-twitter icon" href="#">
+			</a></div>
+			<div class="col-md-3 text-center"><a class="zocial-pinterest icon" href="#">
+			</a></div>
+			<div class="col-md-3 text-center"><a class="zocial-googleplus icon" href="#">
+			</a></div>
 
 		</div>
 
 		 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script src="static/js/bootstrap.min.js"></script>
+	    <script src="/static/js/bootstrap.min.js"></script>
 
 	</body>
 

@@ -2,22 +2,47 @@
 
 {% block content %}
 
-	<h1>
+	<div class="new-form text-center">
 
-		Create a new restaurant
+		<div class="new-name text-center">
 
-	</h1>
+			<span class="middle-align">
 
-	<form action="{{ url_for('newRestaurant') }}" method="post">
+				<h1>
 
-		<p>
-			Name:
-		</p>
+					Create a new restaurant
 
-		<input type="text" size="30" name="name">
+				</h1>
 
-		<input type="submit" value="Create">
+			</span>
 
-	</form>
+		</div>
+
+		<div class="text-center">
+
+			<form action="{{ url_for('newRestaurant') }}" method="post">
+			
+				Name:
+
+				<input type="text" size="30" name="name">
+
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<div class="crea-canc">
+					<input type="submit" value="Create" id="create">
+
+					<a href="{{ url_for('showRestaurants') }}" id="create">
+					Cancel
+					</a>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
 
 {% endblock %}

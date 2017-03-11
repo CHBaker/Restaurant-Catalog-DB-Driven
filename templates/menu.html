@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-	<h1>
+	<h1 id="spot">
 
 		{{ restaurant.name }} Menu
 
@@ -11,7 +11,7 @@
 
 	<h3>
 
-		<a href="{{ url_for('newMenu', restaurant_id = restaurant.id) }}">
+		<a href="{{ url_for('newMenu', restaurant_id = restaurant.id) }}#spot">
 		Create</a>
 
 	</h3>
@@ -27,8 +27,8 @@
 				<li> {{ item.price }} </li>
 				<li> {{ item.course }} </li>
 			</ul>
-			<a href="{{ url_for('editMenu', restaurant_id = restaurant.id, menu_id = item.id) }}">edit</a><br>
-			<a href="{{ url_for('deleteMenu', restaurant_id = restaurant.id, menu_id = item.id) }}">delete</a>
+			<a href="{{ url_for('editMenu', restaurant_id = restaurant.id, menu_id = item.id) }}#spot">edit</a><br>
+			<a href="{{ url_for('deleteMenu', restaurant_id = restaurant.id, menu_id = item.id) }}#spot">delete</a>
 			</li>
 			<br>
 			<br>

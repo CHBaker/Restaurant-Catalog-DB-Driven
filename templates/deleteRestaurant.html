@@ -2,21 +2,42 @@
 
 {% block content %}
 
-	<h1>
+	<div class="new-form text-center">
 
-		Are you sure you want to delete {{ restaurant.name }}?
+		<div class="new-name text-center">
 
-	</h1>
+			<span class="middle-align">
 
-	<form action="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}" method = 'post'>
+				<h1>
 
-		<input type='submit', value = 'Delete'>
+					Are you sure you want to
+					<br>
+					delete {{ restaurant.name }}?
 
-	</form>
+				</h1>
 
-	<br>
-	<a href="{{ url_for('showRestaurants') }}"> 
-	Cancel 
-	</a>
+			</span>
+
+		</div>
+
+		<div class="text-center">
+
+			<form action="{{ url_for('deleteRestaurant', restaurant_id = restaurant.id) }}" method = 'post'>
+
+				<div class="crea-canc">
+
+					<input type='submit', value = 'Delete'>
+
+					<a href="{{ url_for('showRestaurants') }}" id="create"> 
+					Cancel 
+					</a>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
 
 {% endblock %}

@@ -4,6 +4,10 @@ from flask import(Flask,
                   url_for, request,
                   redirect, flash, jsonify)
 
+# auth sessions
+from flask import session as login_session
+import random, string
+
 # import restuarant db
 from database_setup import Base, Restaurant, MenuItem
 from sqlalchemy import create_engine
@@ -17,6 +21,18 @@ engine = create_engine('sqlite:///restaurantmenu.db')
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+
+# create a state token to prevent request forgery
+# store it in session for later validation
+@app.route('/login')
+def showLogin():
+    #string of random uppercase letters/digits
+    state=''.join(random.choice(
+        string.ascii_uppercase + \
+        string.digits) for x in range(32))
+    login_session['state'] = state
+    return render_template('login.html', STATE=state)
 
 
 # API endpoint (GET request) for all restaurant's

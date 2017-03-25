@@ -20,6 +20,21 @@ from sqlalchemy import create_engine
 # classes correspond to tables in db
 Base = declarative_base()
 
+class User(Base):
+    __tablename__ = 'user'
+
+    id = Column(
+        Integer, primary_key = True
+        )
+    name = Column(
+        String(50), nullable = False
+        )
+    email = Column(
+        String(250), nullable = False
+        )
+    picture = Column(
+        String(250), nullable = True)
+
 
 class Restaurant(Base):
     __tablename__ = 'restaurant'
@@ -29,6 +44,12 @@ class Restaurant(Base):
         )
     name = Column(
         String(180), nullable = False
+        )
+    user_id = Column(
+        Integer, ForeignKey('user.id')
+        )
+    user = relationship(
+        User
         )
 
 # serialized function to be able to send JSON objects in a
@@ -63,7 +84,16 @@ class MenuItem(Base):
     restaurant_id = Column(
         Integer, ForeignKey('restaurant.id')
         )
-    restaurant = relationship(Restaurant)
+    restaurant = relationship(
+        Restaurant
+        )
+    user_id = Column(
+        Integer, ForeignKey('user.id')
+        )
+    user = relationship(
+        User
+        )
+
 
 # serialized function to be able to send JSON objects in a
 # serializable format
@@ -82,7 +112,7 @@ class MenuItem(Base):
 
 # allows us of db similar to more robust
 # db like mySQL or postgreSQL
-engine = create_engine('sqlite:///restaurantmenu.db')
+engine = create_engine('sqlite:///restaurantmenuwithusers.db')
 
 # adds tables to our db
 Base.metadata.create_all(engine)

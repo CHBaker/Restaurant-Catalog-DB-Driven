@@ -21,14 +21,27 @@
 	<body>
 		<div>
 
-				<img src="/static/images/floral.jpg" alt="floral background image" class="img-responsive">
+			<img src="/static/images/floral.jpg" alt="floral background image" class="img-responsive">
 
 			<div class="header">
 
 				<div class="center-block text-center">
+
 					<img src="/static/images/profile.jpg" class="profile-pic img-responsive center-block">
 					<br>
-					{ User }
+					<div class="username">
+						{
+						{% if 'username' in session %}
+							{{ username }}
+						{% endif %}
+						
+						{%if 'username' not in session %}
+							<a href="{{url_for('showLogin')}}">Login</a>
+							{% else %}
+							<a href="{{url_for('disconnect')}}">&nbsp Logout</a>
+						{% endif %}
+						}
+					</div>
 				</div>
 
 			</div>
@@ -40,13 +53,15 @@
 
 		<div class="container-fluid row menu">
 
-				<div class="item col-md-4 text-center"><a class="m-link" href="{{ url_for('showRestaurants') }}">
+				<div class={% if 'username' in session %}"item col-md-4 text-center"{% else %}"item col-md-6 text-center"{% endif %}><a class="m-link" href="{{ url_for('showRestaurants') }}">
 				All Restaurants</a></div>
 
-				<div class="item col-md-4 text-center"><a class="m-link" href="#">
-				My Restaurant</a></div>
+				{% if 'username' in session %}
+					<div class="item col-md-4 text-center"><a class="m-link" href="{{ url_for('myRestaurants') }}">
+					My Restaurants</a></div>
+				{% endif %}
 
-				<div class="item col-md-4 text-center"><a class="m-link" href="#">
+				<div class={% if 'username' in session %}"item col-md-4 text-center"{% else %}"item col-md-6 text-center"{% endif %}><a class="m-link" href="{{ url_for('about') }}">
 				About</a></div>
 
 		</div>

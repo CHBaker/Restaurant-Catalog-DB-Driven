@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container-fluid row top">
+
+        <div class="col-md-12 text-center title">
+
+        Restaurants
+
+        </div>
+
+    </div>
+
+    {% for restaurant in restaurants%}
+
+        <div class="container-fluid row restaurant">
+
+            <div class="col-md-6 name">
+
+                <span class="align-middle text-left">
+
+                    {{ restaurant.name }}
+
+                </span>
+
+            </div>
+
+            <div class="col-md-6 text-center option">
+
+                <span class="align-middle">
+
+                    <a href="{{ url_for('showMenu', restaurant_id=restaurant.id) }}">
+                    Menu</a>
+
+                </span>
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+	
+	<div class="container-fluid row top">
+
+        <div class="col-md-12 text-center title">
+
+            <span class="align-middle">
+
+				{{ restaurant.name }} Menu
+
+			</span>
+
+        </div>
+
+	</div>
+
+	{% for item in menu %}
+
+		<div class="container-fluid row restaurant">
+
+    		<div class="col-md-6 name">
+
+        		<span class="align-middle text-left">
+
+        			<ul>
+
+						<li> {{ item.name }}</li>
+
+						<li> {{ item.price }} </li>
+
+						<li> {{ item.course }} </li>
+
+					</ul>
+					
+				</span>
+
+    		</div>
+
+    		<div class="col-md-6 name">
+
+    			<span class="align-middle">
+
+    				<ul>
+
+    					<li> {{ item.description }} </li>
+
+    				</ul>
+
+    			</span>
+
+    		</div>
+
+    	</div>
+
+	{% endfor %}
+
+{% endblock %}

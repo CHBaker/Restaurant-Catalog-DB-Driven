@@ -27,7 +27,7 @@
 
 				<div class="center-block text-center">
 
-					<img src="/static/images/profile.jpg" class="profile-pic img-responsive center-block">
+					<img src={% if 'username' in session %}{{ profile_pic }}{% else %}"/static/images/profile.jpg"{% endif %} class="profile-pic img-responsive center-block">
 					<br>
 					<div class="username">
 						{

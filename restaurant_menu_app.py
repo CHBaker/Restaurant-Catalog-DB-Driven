@@ -319,7 +319,8 @@ def showRestaurants():
             creator = None
 
     return render_template('restaurants.html', restaurants=restaurants, 
-                           creator=creator, username=login_session['username'])
+                           creator=creator, username=login_session['username'],
+                           profile_pic=login_session['picture'])
 
 
 # user's restuarants

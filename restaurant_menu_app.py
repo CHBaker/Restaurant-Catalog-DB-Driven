@@ -330,18 +330,18 @@ def showRestaurants():
 # user's restuarants
 @app.route('/myrestaurants')
 def myRestaurants():
+    if "username" in login_session:
+        user_id = login_session['user_id']
+        restaurants = session.query(Restaurant).filter_by(
+            user_id=user_id).order_by(Restaurant.name).all()
     # authorize user
-    if "username" not in login_session:
+    elif "username" not in login_session:
         return redirect('/login')
     else:
         for r in restaurants:
             if login_session['user_id'] != r.user_id:
                 return make_response(json.dumps(
                     'ERROR 403, <br> ACCESS DENIED'), 403)
-
-    user_id = login_session['user_id']
-    restaurants = session.query(Restaurant).filter_by(
-        user_id=user_id).order_by(Restaurant.name).all()
 
     try:
         creator = login_session['user_id']
@@ -350,7 +350,7 @@ def myRestaurants():
 
     return render_template('myRestaurants.html', restaurants=restaurants,
                            username=login_session['username'],
-                           creator=creator)
+                           creator=creator, profile_pic=login_session['picture'])
 
 
 @app.route('/about')
@@ -358,7 +358,8 @@ def about():
     if 'username' not in login_session:
         return render_template('about.html')
     else:
-        return render_template('about.html', username=login_session['username'])
+        return render_template('about.html', username=login_session['username'],
+                               profile_pic=login_session['picture'])
 
 
 # create new restaurant
@@ -379,7 +380,8 @@ def newRestaurant():
             return redirect(url_for('showRestaurants'))
 
     return render_template('newRestaurant.html', 
-                           username=login_session['username'])
+                           username=login_session['username'],
+                           profile_pic=login_session['picture'])
 
 
 # edit existing restaurant
@@ -403,7 +405,8 @@ def editRestaurant(restaurant_id):
         return redirect(url_for('showRestaurants'))
 
     return render_template('editRestaurant.html', restaurant_id=restaurant_id,
-                           restaurant=restaurant, username=login_session['username'])
+                           restaurant=restaurant, username=login_session['username'],
+                           profile_pic=login_session['picture'])
 
 
 # delete existing restaurant
@@ -424,7 +427,8 @@ def deleteRestaurant(restaurant_id):
         return redirect(url_for('showRestaurants'))
 
     return render_template('deleteRestaurant.html', restaurant=restaurant,
-                           username=login_session['username'])
+                           username=login_session['username'],
+                           profile_pic=login_session['picture'])
 
 
 # show menu for specified restaurant
@@ -434,13 +438,20 @@ def showMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     menu = session.query(MenuItem).filter_by(restaurant_id=restaurant.id).all()
 
-    if restaurant.user_id != login_session['user_id']:
+    if "username" not in login_session:
         return render_template('public_menu.html', 
                                restaurant=restaurant, 
-                               menu=menu, username=login_session['username'])
+                               menu=menu)
 
-    return render_template('menu.html', restaurant=restaurant, 
-                           menu=menu, username=login_session['username'])
+    elif restaurant.user_id != login_session['user_id']:
+        return render_template('public_menu.html', 
+                               restaurant=restaurant, 
+                               menu=menu, username=login_session['username'],
+                               profile_pic=login_session['picture'])
+    else:
+        return render_template('menu.html', restaurant=restaurant, 
+                               menu=menu, username=login_session['username'],
+                               profile_pic=login_session['picture'])
 
 
 # create new menu item for specified restaurant
@@ -485,7 +496,8 @@ def newMenu(restaurant_id):
 
     return render_template('newMenu.html', restaurant_id=restaurant_id,
                            restaurant=restaurant, 
-                           username=login_session['username'])
+                           username=login_session['username'],
+                           profile_pic=login_session['picture'])
 
 
 # edit menu item for specified restaurant
@@ -529,10 +541,12 @@ def editMenu(restaurant_id, menu_id):
                                    restaurant=restaurant, name=name,
                                    description=description, price=price,
                                    course=course, error=error,
-                                   username=login_session['username'])
+                                   username=login_session['username'],
+                                   profile_pic=login_session['picture'])
 
     return render_template('editMenu.html', restaurant=restaurant,
-                           menu=menuItem, username=login_session['username'])
+                           menu=menuItem, username=login_session['username'],
+                           profile_pic=login_session['picture'])
 
 
 # delete menu item for specified restaurant
@@ -556,7 +570,8 @@ def deleteMenu(restaurant_id, menu_id):
         return redirect(url_for('showMenu', restaurant_id=restaurant_id))
 
     return render_template('deleteMenu.html', restaurant=restaurant,
-                           menu=menuItem, username=login_session['username'])
+                           menu=menuItem, username=login_session['username'],
+                           profile_pic=login_session['picture'])
 
 # helper functions
 def createUser(login_session):

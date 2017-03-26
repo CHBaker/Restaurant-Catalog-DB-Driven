@@ -465,20 +465,12 @@ def newMenu(restaurant_id):
         return make_response(json.dumps(
             'ERROR 403, <br> ACCESS DENIED'), 403)
 
-    # place holder for regex to define form input
-    def validForm(name, description, price, course):
-        if name != '' and description != '' \
-           and price != '' and course != '':
-            return True
-        return False
-
     if request.method == 'POST':
-        if validForm(request.form['name'], request.form['description'],
-                     request.form['price'], request.form['course']):
-            name = request.form['name']
-            description = request.form['description']
-            price = request.form['price']
-            course = request.form['course']
+        name = request.form['name']
+        description = request.form['description']
+        price = request.form['price']
+        course = request.form['course']
+        if name and description and price and course:
             menu = MenuItem(name=name, restaurant_id=restaurant_id,
                             description=description, price=price,
                             course=course, user_id=login_session['user_id'])
@@ -489,10 +481,9 @@ def newMenu(restaurant_id):
         else:
             error = "Oops! you are missing some information"
             return render_template('NewMenu.html', restaurant_id=restaurant_id,
-                                   restaurant=restaurant, name=name,
-                                   description=description, price=price,
-                                   course=course, error=error,
-                                   username=login_session['username'])
+                                   restaurant=restaurant, error=error,
+                                   username=login_session['username'],
+                                   profile_pic=login_session['picture'])
 
     return render_template('newMenu.html', restaurant_id=restaurant_id,
                            restaurant=restaurant, 

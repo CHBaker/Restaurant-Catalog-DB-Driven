@@ -66,6 +66,17 @@
 
 		</div>
 
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+
+			<div class="flash container-fluid text-center">
+				{% for message in messages %}
+					{{message}}
+				{% endfor %}
+			</div>
+			{% endif %}
+		{% endwith %}
+
 		<div class="wrapper">
 			{% block content %}
 			{% endblock %}

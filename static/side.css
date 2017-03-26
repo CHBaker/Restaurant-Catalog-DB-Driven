@@ -37,6 +37,10 @@
 	border-radius: 100%
 }
 
+.header-whole {
+	width: 100.2%;
+}
+
 .header {
 	position: absolute;
 	margin-top: 1.5%;
@@ -52,6 +56,10 @@
 	position: relative;
 }
 
+.header-image {
+	width: 100%;
+}
+
 .spacer-box {
 	border-top: 1px solid white;
 	background-color: black;
@@ -59,10 +67,13 @@
 	height: 117px;
 }
 
+.menu {
+	border-bottom: 2px solid black;
+}
+
 .item {
 	height: 36px;
-	padding-top: 6px;
-	border-bottom: 2px solid black;
+	padding-top: 7px;
 	font-size: 1.1em;
 }
 

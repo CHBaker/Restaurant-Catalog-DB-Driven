@@ -30,7 +30,7 @@
 					<img src={% if 'username' in session %}{{ profile_pic }}{% else %}"/static/images/profile.jpg"{% endif %} class="profile-pic img-responsive center-block">
 					<br>
 					<div class="username">
-						{
+						{&nbsp
 						{% if 'username' in session %}
 							{{ username }}
 						{% endif %}
@@ -38,9 +38,9 @@
 						{%if 'username' not in session %}
 							<a href="{{url_for('showLogin')}}">Login</a>
 							{% else %}
-							<a href="{{url_for('disconnect')}}">&nbsp Logout</a>
+							&nbsp&nbsp<a href="{{url_for('disconnect')}}">Logout</a>
 						{% endif %}
-						}
+						&nbsp}
 					</div>
 				</div>
 

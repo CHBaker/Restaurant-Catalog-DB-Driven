@@ -20,7 +20,7 @@ from flask import(Flask,
 
 # auth sessions
 from flask import session as login_session
-import(random, string)
+import random, string
 
 
 # JSON OAUTH

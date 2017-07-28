@@ -112,7 +112,7 @@ class MenuItem(Base):
 
 # allows us of db similar to more robust
 # db like mySQL or postgreSQL
-engine = create_engine('sqlite:///restaurantmenuwithusers.db')
+engine = create_engine('postgresql:///restaurantmenuwithusers.db')
 
 # adds tables to our db
 Base.metadata.create_all(engine)

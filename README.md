@@ -1,18 +1,22 @@
-# Restaurant Catalog 
+# Restaurant Catalog
+
     Database Driven Restaurant/Menu app in 
     Flask, Python, sqlAlchemy
     
 # DOCUMENTATION
+
     Full documentation viewable at 
     https://github.com/CHBaker/Restaurant-Catalog-DB-Driven
     
 # INSTALLATION
+
     1] Download or clone full GitHub repo
     2] Download python to your command line
     3] Download Vagrant
     4] Download Virtual Box
     
 # CONFIGURATION
+
     1] Make sure the project is located within the vagrant directory
     2] Get Vagrant and Virtual Box up and running
     3] Navigate to the vagrant directory, then to the project directory
@@ -25,6 +29,7 @@
        address (default is port 5000)
        
 # OPERATING INSTRUCTIONS
+
     This app is easy to use, login using a Google/Facebook 
     account, and create your restaurants and menu items. 
     You may also view current restaurants publicly with out 
